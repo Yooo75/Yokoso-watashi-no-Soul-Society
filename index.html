@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow Presentation</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .slide {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+        .button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="slide1" class="slide active">Ik ki tu bat nhi krega but still ise dekhle</div>
+        <div id="slide2" class="slide">I know that you are going through a lot a lot and I don't intend to pry in your personal life but still a tad bit</div>
+        <div id="slide3" class="slide">Dekh somehow Ik how it feels anxiety feels like someone is grabbing your heart from inside it pains. You want to cry but your tears don't fall and obviously overthinking just boosts things up.</div>
+        <div id="slide4" class="slide">Apne aap ko self blame Krna easy option lgta hai but itna bhi shi nhi hai thike?</div>
+        <div id="slide5" class="slide">Baki I hope you heal from things you don't talk about.</div>
+        <div id="slide6" class="slide">Aur shayd meri baate cringe lge but tere pas vo hai so vo bohut help kregi teri I believe</div>
+        <div id="slide7" class="slide">Achha thoda mahol normal krne de - Tu chutiya hai bkl ^^</div>
+        
+        <div class="buttons">
+            <button class="button" id="prevBtn" disabled>Previous</button>
+            <button class="button" id="nextBtn">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            });
+            // Update button states based on slide index
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === slides.length - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        });
+
+        // Initial setup
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
